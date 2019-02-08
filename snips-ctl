@@ -1,0 +1,48 @@
+sat="mosquitto snips-hotword snips-orbit-artifice snips-audio-server snips-satellite-routine"
+hub="$sat snips-nlu snips-tts snips-skill-server snips-dialogue snips-asr-google"
+all="$sat $hub snips-analytics"
+
+case "$1" in
+	hub*)
+		case "$2" in
+			enable*)
+				systemctl stop $all
+				systemctl disable $all
+				systemctl enable $hub
+				systemctl restart $hub
+			;;
+			*)
+				systemctl $2 $hub
+			;;
+		esac	
+		snips-status		
+	;;
+	sat*)
+		case "$2" in
+			enable*)
+				systemctl stop $all
+				systemctl disable $all
+				systemctl enable $sat
+				systemctl restart $sat
+			;;
+			*)
+				systemctl $2 $sat
+			;;
+		esac
+		snips-status
+	;;
+	*)
+		echo "sat or hub ?"
+	;;
+esac
+		
+#systemctl $1 mosquitto
+#systemctl $1 snips-analytics
+#systemctl $1 snips-asr
+#systemctl $1 snips-audio-server
+#systemctl $1 snips-dialogue
+#systemctl $1 snips-hotword
+#systemctl $1 snips-nlu
+#systemctl $1 snips-skill-server
+#systemctl $1 snips-tts
+#systemctl $1 snips-satellite-routine
