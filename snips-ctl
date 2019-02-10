@@ -1,4 +1,4 @@
-sat="mosquitto snips-hotword snips-orbit-artifice snips-audio-server snips-satellite-routine"
+sat="mosquitto snips-ledcontrol snips-hotword snips-orbit-artifice snips-audio-server snips-satellite-routine"
 hub="$sat snips-nlu snips-tts snips-skill-server snips-dialogue snips-asr-google"
 all="$sat $hub snips-analytics"
 
